@@ -11,21 +11,26 @@
   <main class="hero">
     <div class="overlay"></div>
 
-    <section class="contenido">
-      <h1>Igual a mí</h1>
-      
-      <input type="text" id="titulo" placeholder="Título de tu poema...">
-      <textarea id="poema" placeholder="Escribe tu poema aquí..."></textarea>
+   <section class="contenido">
 
-      <div class="info">
-        <span id="contador">0 palabras | 0 líneas</span>
-      </div>
-      <div id="lista"></div>
-      <button id="descargar">Descargar poema</button>
-      <button id="compartir">Compartir</button>
-      <button onclick="guardarPoema()">Guardar poema</button>
-    </section>
-  </main>
+  <h1>Igual a mí</h1>
+
+  <input type="text" id="titulo" placeholder="Título del poema...">
+
+  <textarea id="poema" placeholder="Escribe tu poema..."></textarea>
+
+  <div class="acciones">
+    <button onclick="guardarPoema()">Publicar</button>
+    <button id="descargar">Descargar</button>
+    <button id="compartir">Compartir</button>
+  </div>
+
+</section>
+
+<section class="blog">
+  <h2>📜 Poemas publicados</h2>
+  <div id="lista"></div>
+</section>
 
    <script src="script.js"></script>
 </body>
