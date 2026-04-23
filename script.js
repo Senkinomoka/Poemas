@@ -87,3 +87,23 @@ function mostrarPoemas() {
   });
 }
 mostrarPoemas();
+function mostrarPoemas() {
+  const lista = document.getElementById("lista");
+  const poemas = JSON.parse(localStorage.getItem("poemas")) || [];
+
+  lista.innerHTML = "";
+
+  poemas.reverse().forEach((p, index) => {
+    const item = document.createElement("div");
+    item.classList.add("post");
+
+    item.innerHTML = `
+      <h3>${p.titulo}</h3>
+      <small>${p.fecha}</small>
+      <p>${p.contenido}</p>
+      <button onclick="eliminarPoema(${index})">Eliminar</button>
+    `;
+
+    lista.appendChild(item);
+  });
+}
