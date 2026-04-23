@@ -113,3 +113,8 @@ function eliminarPoema(index) {
   localStorage.setItem("poemas", JSON.stringify(poemas));
   mostrarPoemas();
 }
+const firebaseConfig = {
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+};
