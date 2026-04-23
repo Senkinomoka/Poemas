@@ -52,3 +52,20 @@ compartir.addEventListener("click", () => {
     alert("Tu navegador no permite compartir directamente.");
   }
 });
+const titulo = document.getElementById("titulo");
+
+/* Guardar múltiples poemas */
+function guardarPoema() {
+  const poemas = JSON.parse(localStorage.getItem("poemas")) || [];
+
+  const nuevo = {
+    titulo: titulo.value || "Sin título",
+    contenido: textarea.value,
+    fecha: new Date().toLocaleString()
+  };
+
+  poemas.push(nuevo);
+  localStorage.setItem("poemas", JSON.stringify(poemas));
+
+  alert("Poema guardado ✅");
+}
