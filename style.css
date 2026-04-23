@@ -226,3 +226,14 @@ body {
     transform: scale(1);
   }
 }
+.post:hover {
+  background: rgba(255,255,255,0.07);
+  cursor: pointer;
+}
+.feed {
+  margin-top: 40px;
+}
+
+.post {
+  margin-bottom: 25px;
+}
