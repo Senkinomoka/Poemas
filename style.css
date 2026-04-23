@@ -136,3 +136,37 @@ input {
   opacity: 0.8;
   margin: 5px 0;
 }
+.blog {
+  margin-top: 40px;
+  width: 90%;
+  max-width: 700px;
+  color: blanchedalmond;
+}
+
+.blog h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Tarjeta de poema */
+.post {
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  backdrop-filter: blur(6px);
+}
+
+.post h3 {
+  margin-bottom: 5px;
+}
+
+.post small {
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+
+.post p {
+  margin-top: 10px;
+  line-height: 1.5;
+}
