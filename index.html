@@ -15,23 +15,20 @@
 
   <header class="topbar">
     <h1>Igual a mí</h1>
-    <p class="tagline">Escribe lo que no puedes decir en voz alta...</p>
   </header>
 
-  <section class="editor">
-    <input type="text" id="titulo" placeholder="Título de tu poema...">
+  <section class="editor glass">
+    <input type="text" id="titulo" placeholder="Título...">
 
     <textarea id="poema" placeholder="Empieza a escribir..."></textarea>
 
     <div class="acciones">
       <button onclick="guardarPoema()">Publicar</button>
-      <button id="descargar">Descargar</button>
-      <button id="compartir">Compartir</button>
+      <button id="descargar">⬇</button>
     </div>
   </section>
 
   <section class="feed">
-    <h2>Poemas</h2>
     <div id="lista"></div>
   </section>
 
