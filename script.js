@@ -107,3 +107,9 @@ function mostrarPoemas() {
     lista.appendChild(item);
   });
 }
+function eliminarPoema(index) {
+  let poemas = JSON.parse(localStorage.getItem("poemas")) || [];
+  poemas.splice(index, 1);
+  localStorage.setItem("poemas", JSON.stringify(poemas));
+  mostrarPoemas();
+}
