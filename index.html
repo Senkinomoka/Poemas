@@ -11,31 +11,31 @@
 </head>
 <body>
 
-  <main class="hero">
-    <div class="overlay"></div>
+  <main class="app">
 
-   <section class="contenido">
+  <header class="topbar">
+    <h1>Igual a mí</h1>
+    <p class="tagline">Escribe lo que no puedes decir en voz alta...</p>
+  </header>
 
-  <h1>Igual a mí</h1>
+  <section class="editor">
+    <input type="text" id="titulo" placeholder="Título de tu poema...">
 
-  <input type="text" id="titulo" placeholder="Título del poema...">
-     <input placeholder="Tu nombre...">
+    <textarea id="poema" placeholder="Empieza a escribir..."></textarea>
 
-  <textarea id="poema" placeholder="Escribe tu poema..."></textarea>
+    <div class="acciones">
+      <button onclick="guardarPoema()">Publicar</button>
+      <button id="descargar">Descargar</button>
+      <button id="compartir">Compartir</button>
+    </div>
+  </section>
 
-  <div class="acciones">
-    <button onclick="guardarPoema()">Publicar</button>
-    <button id="descargar">Descargar</button>
-    <button id="compartir">Compartir</button>
-  </div>
+  <section class="feed">
+    <h2>Poemas</h2>
+    <div id="lista"></div>
+  </section>
 
-</section>
-
-<section class="blog">
-  <h2>📜 Poemas publicados</h2>
-  <div id="lista"></div>
-</section>
-
+</main>
    <script src="script.js"></script>
    <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
