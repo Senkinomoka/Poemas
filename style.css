@@ -95,110 +95,127 @@ button:hover {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #0f0f10;
+  background: radial-gradient(circle at top, #1a1a1d, #0f0f10);
   color: #eaeaea;
 }
 
 /* CONTENEDOR */
 .app {
-  max-width: 800px;
+  max-width: 500px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
 /* HEADER */
 .topbar {
-  margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .topbar h1 {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 
-.tagline {
-  opacity: 0.6;
-  margin-top: 5px;
+/* GLASS EFFECT */
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  transition: 0.3s;
 }
 
-/* EDITOR */
-.editor {
-  margin-bottom: 50px;
+.glass:hover {
+  transform: scale(1.01);
 }
 
-input {
+/* INPUTS */
+input, textarea {
   width: 100%;
-  font-size: 1.2rem;
   border: none;
   background: transparent;
   color: #fff;
-  margin-bottom: 15px;
   outline: none;
 }
 
+input {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
 textarea {
-  width: 100%;
-  min-height: 200px;
-  border: none;
-  background: transparent;
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.7;
-  outline: none;
-  resize: none;
+  min-height: 120px;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 /* BOTONES */
 .acciones {
-  margin-top: 15px;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 button {
-  background: #1f1f22;
-  color: #fff;
+  flex: 1;
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  margin-right: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #2a2a2e;
+  color: white;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
 button:hover {
-  background: #2c2c30;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  background: #3a3a40;
 }
 
 /* FEED */
-.feed h2 {
-  margin-bottom: 20px;
-  font-weight: 500;
+.feed {
+  margin-top: 25px;
 }
 
 /* POST */
 .post {
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  animation: fadeUp 0.4s ease;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
 }
 
 .post h3 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 5px;
 }
 
 .post p {
-  opacity: 0.8;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
 .post small {
+  font-size: 0.7rem;
   opacity: 0.5;
-  font-size: 0.75rem;
 }
 
 /* ANIMACIÓN */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SCROLL SUAVE */
+html {
+  scroll-behavior: smooth;
 }
