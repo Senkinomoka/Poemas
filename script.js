@@ -113,3 +113,10 @@ setTimeout(() => {
   item.style.transition = "0.4s";
   item.style.opacity = 1;
 }, 50);
+mostrarPoemas();
+
+setTimeout(() => {
+  document.querySelector(".feed").scrollIntoView({
+    behavior: "smooth"
+  });
+}, 100);
