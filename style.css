@@ -11,7 +11,7 @@ body {
 .hero {
   position: relative;
   height: 100vh;
-  background-image: url("Images/Poema.jpg");
+  background-image: url("Poema.jpg?v=2");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -83,4 +83,32 @@ button {
 
 button:hover {
   transform: scale(1.05);
+}
+/* Fuente más elegante (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+body {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Caja tipo "papel" */
+textarea {
+  background: rgba(255, 255, 255, 0.12);
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* Efecto brillo en título */
+h1 {
+  text-shadow: 0 0 15px rgba(255, 235, 205, 0.6);
+}
+
+/* Scroll bonito */
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: blanchedalmond;
+  border-radius: 10px;
 }

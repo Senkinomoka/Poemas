@@ -37,3 +37,18 @@ boton.addEventListener("click", () => {
 
 /* Inicial */
 actualizarContador();
+const compartir = document.getElementById("compartir");
+
+compartir.addEventListener("click", () => {
+  const texto = textarea.value;
+
+  if (navigator.share) {
+    navigator.share({
+      title: "Mi poema",
+      text: texto,
+      url: window.location.href
+    });
+  } else {
+    alert("Tu navegador no permite compartir directamente.");
+  }
+});
