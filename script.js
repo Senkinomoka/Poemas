@@ -1,122 +1,89 @@
-const textarea = document.getElementById("poema");
 const titulo = document.getElementById("titulo");
+const contenido = document.getElementById("contenido");
+const categoria = document.getElementById("categoria");
 const lista = document.getElementById("lista");
 
-const { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } = window.firebaseTools;
-const db = window.db;
+/* GUARDAR POST */
+function guardarPost() {
+  if (!titulo.value || !contenido.value) {
+    alert("Completa los campos");
+    return;
+  }
 
-/* PUBLICAR */
-async function guardarPoema() {
-  await addDoc(collection(db, "poemas"), {
-    titulo: titulo.value || "Sin título",
-    contenido: textarea.value,
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  const nuevo = {
+    titulo: titulo.value,
+    contenido: contenido.value,
+    categoria: categoria.value || "General",
     fecha: new Date().toLocaleString()
-  });
+  };
 
-  textarea.value = "";
+  posts.unshift(nuevo);
+  localStorage.setItem("posts", JSON.stringify(posts));
+
   titulo.value = "";
+  contenido.value = "";
+  categoria.value = "";
 
-  querySnapshot.forEach((docu) => {
-  const data = docu.data();
+  mostrarPosts();
+  mostrarToast();
 
-  const item = document.createElement("div");
-  item.classList.add("post");
-
-  item.innerHTML = `
-  <h3>${p.titulo}</h3>
-  <p>${p.contenido}</p>
-  <small>${p.fecha}</small>
-`;
-    
-    <br>
-    <button onclick="editar('${docu.id}', this)">Guardar cambios</button>
-    <button onclick="eliminar('${docu.id}')">Eliminar</button>
-
-    <div class="comentarios">
-      <h4>💬 Comentarios</h4>
-      <div id="comentarios-${docu.id}"></div>
-
-      <input type="text" placeholder="Escribe un comentario..." id="input-${docu.id}">
-      <button onclick="agregarComentario('${docu.id}')">Enviar</button>
-    </div>
-  `;
-
-  lista.appendChild(item);
-
-  cargarComentarios(docu.id);
-});
-
-/* ELIMINAR */
-async function eliminar(id) {
-  await deleteDoc(doc(db, "poemas", id));
-  mostrarPoemas();
+  setTimeout(() => {
+    document.querySelector(".feed").scrollIntoView({
+      behavior: "smooth"
+    });
+  }, 100);
 }
 
-/* EDITAR */
-async function editar(id, btn) {
-  const post = btn.parentElement;
-  const nuevoTitulo = post.querySelector("h3").innerText;
-  const nuevoContenido = post.querySelector("p").innerText;
+/* MOSTRAR POSTS */
+function mostrarPosts() {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-  await updateDoc(doc(db, "poemas", id), {
-    titulo: nuevoTitulo,
-    contenido: nuevoContenido
-  });
+  lista.innerHTML = "";
 
-  alert("Actualizado ✅");
-}
+  posts.forEach((p, index) => {
+    const item = document.createElement("div");
+    item.classList.add("post");
 
-mostrarPoemas();
-async function agregarComentario(postId) {
-  const input = document.getElementById(`input-${postId}`);
-  const texto = input.value;
+    item.innerHTML = `
+      <h3>${p.titulo}</h3>
+      <span>${p.categoria}</span>
+      <pre><code>${escapeHTML(p.contenido)}</code></pre>
+      <small>${p.fecha}</small>
+    `;
 
-  if (!texto.trim()) return;
+    lista.appendChild(item);
 
-  await addDoc(collection(db, "comentarios"), {
-    postId: postId,
-    texto: texto,
-    fecha: new Date().toLocaleString()
-  });
+    // animación tipo app
+    item.style.opacity = 0;
+    item.style.transform = "translateY(10px)";
 
-  input.value = "";
-  cargarComentarios(postId);
-}
-async function cargarComentarios(postId) {
-  const contenedor = document.getElementById(`comentarios-${postId}`);
-  contenedor.innerHTML = "";
-
-  const querySnapshot = await getDocs(collection(db, "comentarios"));
-
-  querySnapshot.forEach((docu) => {
-    const data = docu.data();
-
-    if (data.postId === postId) {
-      const div = document.createElement("div");
-      div.classList.add("comentario");
-
-      div.innerHTML = `
-        <p>${data.texto}</p>
-        <small>${data.fecha}</small>
-      `;
-
-      contenedor.appendChild(div);
-    }
+    setTimeout(() => {
+      item.style.transition = "0.4s";
+      item.style.opacity = 1;
+      item.style.transform = "translateY(0)";
+    }, index * 80);
   });
 }
-setTimeout(() => {
-  item.style.animationDelay = `${index * 0.05}s`;
-}, 0);
-item.style.opacity = 0;
 
-setTimeout(() => {
-  item.style.transition = "0.4s";
-  item.style.opacity = 1;
-}, 50);
-mostrarPoemas();
+/* EVITAR HTML INYECTADO */
+function escapeHTML(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
-setTimeout(() => {
-  document.querySelector(".feed").scrollIntoView({
-    behavior: "smooth"
-  });
-}, 100);
+/* TOAST */
+function mostrarToast() {
+  const toast = document.getElementById("toast");
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
+}
+
+/* INICIAR */
+mostrarPosts();
